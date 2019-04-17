@@ -18,8 +18,8 @@
 
 	function add_css() {
 		var style = createElement("style");
-		style.id = 'svelte-2nv3ne-style';
-		style.textContent = ".card.svelte-2nv3ne{display:inline-block}.status.svelte-2nv3ne{border:lightgray 1px solid;padding:1em;border-radius:0.5em;display:flex;box-shadow:darkgray 0 0 0.1em;background-color:white;align-items:center}.status.svelte-2nv3ne>.text.svelte-2nv3ne{text-transform:uppercase;font-family:Arial, Helvetica, sans-serif;padding-left:0.5em}.circle.svelte-2nv3ne{width:1em;height:1em;border-radius:0.5em}.ok.svelte-2nv3ne{background-color:limegreen}.failed.svelte-2nv3ne{background-color:crimson}.na.svelte-2nv3ne{background-color:darkgray}.pending.svelte-2nv3ne{background-color:gray;animation:svelte-2nv3ne-blinker 1s linear infinite}@keyframes svelte-2nv3ne-blinker{50%{opacity:0}}";
+		style.id = 'svelte-1f5omrq-style';
+		style.textContent = ".card.svelte-1f5omrq{display:inline-block}.status.svelte-1f5omrq{border:lightgray 1px solid;padding:1em;border-radius:0.5em;display:flex;box-shadow:darkgray 0 0 0.1em;background-color:white;align-items:center}.status.svelte-1f5omrq>.text.svelte-1f5omrq{text-transform:uppercase;font-family:Arial, Helvetica, sans-serif;padding-left:0.5em}.circle.svelte-1f5omrq{width:1em;height:1em;border-radius:0.5em}.ok.svelte-1f5omrq{background-color:limegreen}.failed.svelte-1f5omrq{background-color:crimson}.fail.svelte-1f5omrq{background-color:crimson}.na.svelte-1f5omrq{background-color:darkgray}.pending.svelte-1f5omrq{background-color:gray;animation:svelte-1f5omrq-blinker 1s linear infinite}@keyframes svelte-1f5omrq-blinker{50%{opacity:0}}";
 		append(document.head, style);
 	}
 
@@ -34,10 +34,10 @@
 				text0 = createText("\n        ");
 				div1 = createElement("div");
 				text1 = createText(ctx.text);
-				div0.className = div0_class_value = "circle " + ctx.status + " svelte-2nv3ne";
-				div1.className = "text svelte-2nv3ne";
-				div2.className = "status svelte-2nv3ne";
-				div3.className = "card svelte-2nv3ne";
+				div0.className = div0_class_value = "circle " + ctx.status + " svelte-1f5omrq";
+				div1.className = "text svelte-1f5omrq";
+				div2.className = "status svelte-1f5omrq";
+				div3.className = "card svelte-1f5omrq";
 			},
 
 			m(target, anchor) {
@@ -50,7 +50,7 @@
 			},
 
 			p(changed, ctx) {
-				if ((changed.status) && div0_class_value !== (div0_class_value = "circle " + ctx.status + " svelte-2nv3ne")) {
+				if ((changed.status) && div0_class_value !== (div0_class_value = "circle " + ctx.status + " svelte-1f5omrq")) {
 					div0.className = div0_class_value;
 				}
 
@@ -72,7 +72,7 @@
 		this._state = assign(data(), options.data);
 		this._intro = true;
 
-		if (!document.getElementById("svelte-2nv3ne-style")) add_css();
+		if (!document.getElementById("svelte-1f5omrq-style")) add_css();
 
 		this._fragment = create_main_fragment(this, this._state);
 

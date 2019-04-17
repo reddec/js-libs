@@ -10,7 +10,7 @@ Statuses:
 
 * `pending`
 * `ok`
-* `fail`
+* `fail` (or `failed`)
 * `na` (not available)
 
 Example: 
