@@ -1,0 +1,71 @@
+<div class="card">
+    <div class="status">
+        <div class="circle {status}"></div>
+        <div class="text">{text}</div>
+    </div>
+</div>
+
+<style>
+    .card {
+        display: inline-block;
+    }
+
+    .status {
+        border: lightgray 1px solid;
+        padding: 1em;
+        border-radius: 0.5em;
+        display: flex;
+        box-shadow: darkgray 0 0 0.1em;
+        background-color: white;
+        align-items: center;
+    }
+
+    .status > .text {
+        text-transform: uppercase;
+        font-family: Arial, Helvetica, sans-serif;
+        padding-left: 0.5em;
+    }
+
+    .circle {
+        width: 1em;
+        height: 1em;
+        border-radius: 0.5em;
+    }
+
+    .ok {
+        background-color: limegreen;
+    }
+
+    .failed {
+        background-color: crimson;
+    }
+
+    .na {
+        background-color: darkgray;
+    }
+
+    .pending {
+        background-color: gray;
+        animation: blinker 1s linear infinite;
+    }
+
+
+    @keyframes blinker {
+        50% {
+            opacity: 0;
+        }
+    }
+</style>
+<script>
+    export default {
+        data() {
+            return {
+                text: '',
+                status: 'na',
+            }
+        },
+        methods: {
+
+        }
+    }
+</script>
