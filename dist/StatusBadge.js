@@ -9,27 +9,42 @@
     return {
         text: '',
         status: 'na',
+        pressed: false,
     }
 };
 
 	var methods = {
     onClick(e) {
         this.fire('click', e);
-    }
+    },
+    onMouseDown() {
+        this.set({pressed: true});
+    },
+    onMouseUp() {
+        this.set({pressed: false});
+    },
 };
 
 	function add_css() {
 		var style = createElement("style");
-		style.id = 'svelte-ga3li0-style';
-		style.textContent = ".card.svelte-ga3li0{display:inline-block;cursor:pointer}.status.svelte-ga3li0{border:lightgray 1px solid;padding:1em;border-radius:0.5em;display:flex;box-shadow:darkgray 0 0 0.1em;background-color:white;align-items:center}.status.svelte-ga3li0>.text.svelte-ga3li0{text-transform:uppercase;font-family:Arial, Helvetica, sans-serif;padding-left:0.5em}.circle.svelte-ga3li0{width:1em;height:1em;border-radius:0.5em}.ok.svelte-ga3li0{background-color:limegreen}.failed.svelte-ga3li0{background-color:crimson}.fail.svelte-ga3li0{background-color:crimson}.na.svelte-ga3li0{background-color:darkgray}.pending.svelte-ga3li0{background-color:gray;animation:svelte-ga3li0-blinker 1s linear infinite}@keyframes svelte-ga3li0-blinker{50%{opacity:0}}";
+		style.id = 'svelte-m8o9pi-style';
+		style.textContent = ".card.svelte-m8o9pi{display:inline-block;cursor:pointer}.status.svelte-m8o9pi{border:lightgray 1px solid;padding:1em;border-radius:0.5em;display:flex;box-shadow:darkgray 0 0 0.1em;background-color:white;align-items:center}.pressed.svelte-m8o9pi{box-shadow:inset darkgray 0 0 0.2em !important}.status.svelte-m8o9pi>.text.svelte-m8o9pi{text-transform:uppercase;font-family:Arial, Helvetica, sans-serif;padding-left:0.5em}.circle.svelte-m8o9pi{width:1em;height:1em;border-radius:0.5em}.ok.svelte-m8o9pi{background-color:limegreen}.failed.svelte-m8o9pi{background-color:crimson}.fail.svelte-m8o9pi{background-color:crimson}.na.svelte-m8o9pi{background-color:darkgray}.pending.svelte-m8o9pi{background-color:gray;animation:svelte-m8o9pi-blinker 1s linear infinite}@keyframes svelte-m8o9pi-blinker{50%{opacity:0}}";
 		append(document.head, style);
 	}
 
 	function create_main_fragment(component, ctx) {
-		var div3, div2, div0, div0_class_value, text0, div1, text1;
+		var div3, div2, div0, div0_class_value, text0, div1, text1, div2_class_value;
 
 		function click_handler(event) {
 			component.onClick(event);
+		}
+
+		function mousedown_handler(event) {
+			component.onMouseDown();
+		}
+
+		function mouseup_handler(event) {
+			component.onMouseUp();
 		}
 
 		return {
@@ -40,11 +55,13 @@
 				text0 = createText("\n        ");
 				div1 = createElement("div");
 				text1 = createText(ctx.text);
-				div0.className = div0_class_value = "circle " + ctx.status + " svelte-ga3li0";
-				div1.className = "text svelte-ga3li0";
-				div2.className = "status svelte-ga3li0";
+				div0.className = div0_class_value = "circle " + ctx.status + " svelte-m8o9pi";
+				div1.className = "text svelte-m8o9pi";
+				div2.className = div2_class_value = "status " + (ctx.pressed ? 'pressed' : '') + " svelte-m8o9pi";
 				addListener(div3, "click", click_handler);
-				div3.className = "card svelte-ga3li0";
+				addListener(div3, "mousedown", mousedown_handler);
+				addListener(div3, "mouseup", mouseup_handler);
+				div3.className = "card svelte-m8o9pi";
 			},
 
 			m(target, anchor) {
@@ -57,12 +74,16 @@
 			},
 
 			p(changed, ctx) {
-				if ((changed.status) && div0_class_value !== (div0_class_value = "circle " + ctx.status + " svelte-ga3li0")) {
+				if ((changed.status) && div0_class_value !== (div0_class_value = "circle " + ctx.status + " svelte-m8o9pi")) {
 					div0.className = div0_class_value;
 				}
 
 				if (changed.text) {
 					setData(text1, ctx.text);
+				}
+
+				if ((changed.pressed) && div2_class_value !== (div2_class_value = "status " + (ctx.pressed ? 'pressed' : '') + " svelte-m8o9pi")) {
+					div2.className = div2_class_value;
 				}
 			},
 
@@ -72,6 +93,8 @@
 				}
 
 				removeListener(div3, "click", click_handler);
+				removeListener(div3, "mousedown", mousedown_handler);
+				removeListener(div3, "mouseup", mouseup_handler);
 			}
 		};
 	}
@@ -81,7 +104,7 @@
 		this._state = assign(data(), options.data);
 		this._intro = true;
 
-		if (!document.getElementById("svelte-ga3li0-style")) add_css();
+		if (!document.getElementById("svelte-m8o9pi-style")) add_css();
 
 		this._fragment = create_main_fragment(this, this._state);
 
