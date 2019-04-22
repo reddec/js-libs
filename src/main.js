@@ -8,6 +8,10 @@ const app = new App({
     }
 });
 
+app.on('click', function () {
+    console.log("Clicked");
+});
+
 window.app = app;
 
 export default app;

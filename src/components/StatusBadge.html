@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" on:click="onClick(event)">
     <div class="status">
         <div class="circle {status}"></div>
         <div class="text">{text}</div>
@@ -8,6 +8,7 @@
 <style>
     .card {
         display: inline-block;
+        cursor: pointer;
     }
 
     .status {
@@ -69,7 +70,9 @@
             }
         },
         methods: {
-
+            onClick(e) {
+                this.fire('click', e);
+            }
         }
     }
 </script>

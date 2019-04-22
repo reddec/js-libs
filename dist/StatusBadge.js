@@ -13,18 +13,24 @@
 };
 
 	var methods = {
-
+    onClick(e) {
+        this.fire('click', e);
+    }
 };
 
 	function add_css() {
 		var style = createElement("style");
-		style.id = 'svelte-1f5omrq-style';
-		style.textContent = ".card.svelte-1f5omrq{display:inline-block}.status.svelte-1f5omrq{border:lightgray 1px solid;padding:1em;border-radius:0.5em;display:flex;box-shadow:darkgray 0 0 0.1em;background-color:white;align-items:center}.status.svelte-1f5omrq>.text.svelte-1f5omrq{text-transform:uppercase;font-family:Arial, Helvetica, sans-serif;padding-left:0.5em}.circle.svelte-1f5omrq{width:1em;height:1em;border-radius:0.5em}.ok.svelte-1f5omrq{background-color:limegreen}.failed.svelte-1f5omrq{background-color:crimson}.fail.svelte-1f5omrq{background-color:crimson}.na.svelte-1f5omrq{background-color:darkgray}.pending.svelte-1f5omrq{background-color:gray;animation:svelte-1f5omrq-blinker 1s linear infinite}@keyframes svelte-1f5omrq-blinker{50%{opacity:0}}";
+		style.id = 'svelte-ga3li0-style';
+		style.textContent = ".card.svelte-ga3li0{display:inline-block;cursor:pointer}.status.svelte-ga3li0{border:lightgray 1px solid;padding:1em;border-radius:0.5em;display:flex;box-shadow:darkgray 0 0 0.1em;background-color:white;align-items:center}.status.svelte-ga3li0>.text.svelte-ga3li0{text-transform:uppercase;font-family:Arial, Helvetica, sans-serif;padding-left:0.5em}.circle.svelte-ga3li0{width:1em;height:1em;border-radius:0.5em}.ok.svelte-ga3li0{background-color:limegreen}.failed.svelte-ga3li0{background-color:crimson}.fail.svelte-ga3li0{background-color:crimson}.na.svelte-ga3li0{background-color:darkgray}.pending.svelte-ga3li0{background-color:gray;animation:svelte-ga3li0-blinker 1s linear infinite}@keyframes svelte-ga3li0-blinker{50%{opacity:0}}";
 		append(document.head, style);
 	}
 
 	function create_main_fragment(component, ctx) {
 		var div3, div2, div0, div0_class_value, text0, div1, text1;
+
+		function click_handler(event) {
+			component.onClick(event);
+		}
 
 		return {
 			c() {
@@ -34,10 +40,11 @@
 				text0 = createText("\n        ");
 				div1 = createElement("div");
 				text1 = createText(ctx.text);
-				div0.className = div0_class_value = "circle " + ctx.status + " svelte-1f5omrq";
-				div1.className = "text svelte-1f5omrq";
-				div2.className = "status svelte-1f5omrq";
-				div3.className = "card svelte-1f5omrq";
+				div0.className = div0_class_value = "circle " + ctx.status + " svelte-ga3li0";
+				div1.className = "text svelte-ga3li0";
+				div2.className = "status svelte-ga3li0";
+				addListener(div3, "click", click_handler);
+				div3.className = "card svelte-ga3li0";
 			},
 
 			m(target, anchor) {
@@ -50,7 +57,7 @@
 			},
 
 			p(changed, ctx) {
-				if ((changed.status) && div0_class_value !== (div0_class_value = "circle " + ctx.status + " svelte-1f5omrq")) {
+				if ((changed.status) && div0_class_value !== (div0_class_value = "circle " + ctx.status + " svelte-ga3li0")) {
 					div0.className = div0_class_value;
 				}
 
@@ -63,6 +70,8 @@
 				if (detach) {
 					detachNode(div3);
 				}
+
+				removeListener(div3, "click", click_handler);
 			}
 		};
 	}
@@ -72,7 +81,7 @@
 		this._state = assign(data(), options.data);
 		this._intro = true;
 
-		if (!document.getElementById("svelte-1f5omrq-style")) add_css();
+		if (!document.getElementById("svelte-ga3li0-style")) add_css();
 
 		this._fragment = create_main_fragment(this, this._state);
 
@@ -109,6 +118,10 @@
 		return document.createTextNode(data);
 	}
 
+	function addListener(node, event, handler, options) {
+		node.addEventListener(event, handler, options);
+	}
+
 	function insert(target, node, anchor) {
 		target.insertBefore(node, anchor);
 	}
@@ -119,6 +132,10 @@
 
 	function detachNode(node) {
 		node.parentNode.removeChild(node);
+	}
+
+	function removeListener(node, event, handler, options) {
+		node.removeEventListener(event, handler, options);
 	}
 
 	function init(component, options) {
