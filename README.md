@@ -18,7 +18,7 @@ Example:
 ```js
 var badge = StatusBadge({
     target: document.getElementById('myElement'),
-    data: {
+    props: {
         text: 'some service',
         status: 'pending'
     }
@@ -26,6 +26,6 @@ var badge = StatusBadge({
 
 // after some time...
 
-badge.set({status: 'ok'}); // or 'pending', 'ok', 'fail', 'na'
+badge.$set({status: 'ok'}); // or 'pending', 'ok', 'fail', 'na'
 
 ```
