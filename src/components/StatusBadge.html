@@ -1,4 +1,4 @@
-<div class="card" on:click="onClick(event)" on:mousedown="onMouseDown()" on:mouseup="onMouseUp()">
+<div class="card" on:click="{onClick}" on:mousedown="{onMouseDown}" on:mouseup="{onMouseUp}">
     <div class="status {pressed ? 'pressed' : ''}">
         <div class="circle {status}"></div>
         <div class="text">{text}</div>
@@ -66,24 +66,24 @@
     }
 </style>
 <script>
-    export default {
-        data() {
-            return {
-                text: '',
-                status: 'na',
-                pressed: false,
-            }
-        },
-        methods: {
-            onClick(e) {
-                this.fire('click', e);
-            },
-            onMouseDown() {
-                this.set({pressed: true});
-            },
-            onMouseUp() {
-                this.set({pressed: false});
-            },
-        }
+    import {createEventDispatcher} from 'svelte';
+
+    export let text = '';
+    export let status = 'na';
+
+    let pressed = false;
+
+    const events = createEventDispatcher();
+
+    function onClick(e) {
+        events('click', e);
+    }
+
+    function onMouseDown() {
+        pressed = true;
+    }
+
+    function onMouseUp() {
+        pressed = false;
     }
 </script>
